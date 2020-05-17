@@ -65,8 +65,8 @@ static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-    { 0,                       XF86AudioPlay, spawn, {.v = togglem }  },
-    { 0,                       XF86AudioPause, spawn, {.v = togglem }  },
+    { 0,                       XF86XK_AudioPlay, spawn, {.v = togglem }  },
+    { 0,                       XF86XK_AudioPause, spawn, {.v = togglem }  },
     { 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol }  },
     { 0,                       XF86XK_AudioMute, spawn, {.v = mutevol }  },
     { 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   }  },
