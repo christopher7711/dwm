@@ -43,10 +43,12 @@ static const Layout layouts[] = {
 	{ "[M]",      monocle },
 };
 
+/* helper for spawning shell commands in the pre dwm-5.0 fashion */
+#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL  }  }
+
+static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL  };
 static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL  };
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL  };
-static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL  };
-static const char *togglem[] = {"/usr/bin/dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"};
 /* key definitions */
 #define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
@@ -65,8 +67,8 @@ static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-    { 0,                       XF86XK_AudioPlay, spawn, {.v = togglem }  },
-    { 0,                       XF86XK_AudioPause, spawn, {.v = togglem }  },
+    { 0,                       XF86XK_AudioPause,spawn,SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")  },
+    { 0,                       XF86XK_AudioPlay,spawn,SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")  },               
     { 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol }  },
     { 0,                       XF86XK_AudioMute, spawn, {.v = mutevol }  },
     { 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   }  },
