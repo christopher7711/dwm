@@ -66,7 +66,9 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
-	/* modifier                     key        function        argument */
+	/* modifier                     key        function        argument */ 
+    { 0,      XF86XK_AudioPrev,spawn,SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")  },
+    { 0,      XF86XK_AudioNext,spawn,SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")  },
     { 0,                       XF86XK_AudioPause,spawn,SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")  },
     { 0,                       XF86XK_AudioPlay,spawn,SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")  },               
     { 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol }  },
